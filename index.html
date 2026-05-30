@@ -287,6 +287,40 @@ max-width:760px;margin-bottom:56px}
 .sp-grid.sp-grid-4>.sp-c:nth-child(3){--sp-rot:8deg;--sp-base-y:6px;animation-delay:-5.5s}
 .sp-grid.sp-grid-4>.sp-c:nth-child(4){--sp-rot:-8deg;--sp-base-y:6px;animation-delay:-8.2s}
 
+.sp-grid.sp-grid-3plus1{grid-template-columns:repeat(3,1fr);gap:22px;perspective-origin:50% 40%;row-gap:36px}
+.sp-grid.sp-grid-3plus1>.sp-c:nth-child(1){--sp-rot:12deg;--sp-base-y:14px;animation-delay:-2.2s}
+.sp-grid.sp-grid-3plus1>.sp-c:nth-child(2){--sp-rot:0deg;--sp-base-y:-18px;z-index:2;animation-delay:0s}
+.sp-grid.sp-grid-3plus1>.sp-c:nth-child(3){--sp-rot:-12deg;--sp-base-y:14px;animation-delay:-5.5s}
+.sp-grid.sp-grid-3plus1>.sp-c.sp-wide{grid-column:1/-1;--sp-rot:0deg;--sp-base-y:0px;
+  transform:none!important;animation:none!important;transform-style:flat!important;
+  padding:38px 56px;
+  display:flex;flex-direction:column;gap:24px;align-items:stretch;
+  background:
+    linear-gradient(135deg,rgba(212,168,75,.07) 0%,rgba(212,168,75,.02) 50%,rgba(212,168,75,.05) 100%),
+    var(--brn);
+  border:1px solid rgba(212,168,75,.22);
+  position:relative}
+.sp-grid.sp-grid-3plus1>.sp-c.sp-wide .sp-wide-grid{
+  display:grid;grid-template-columns:1fr 2.6fr;gap:42px;align-items:center}
+.sp-grid.sp-grid-3plus1>.sp-c.sp-wide .sp-eyebrow{margin-bottom:6px}
+.sp-grid.sp-grid-3plus1>.sp-c.sp-wide h3{font-size:28px;margin-bottom:6px}
+.sp-grid.sp-grid-3plus1>.sp-c.sp-wide .sp-sub{margin-bottom:0}
+.sp-grid.sp-grid-3plus1>.sp-c.sp-wide .sp-body{margin:0}
+.sp-grid.sp-grid-3plus1>.sp-c.sp-wide>.sp-tag{align-self:flex-start;margin:0}
+
+.sp-grid.sp-grid-3plus1>.sp-divider{
+  grid-column:1/-1;height:1px;width:480px;max-width:80%;margin:8px auto 0;
+  background:linear-gradient(90deg,transparent 0%,rgba(140,124,108,.32) 35%,rgba(140,124,108,.42) 50%,rgba(140,124,108,.32) 65%,transparent 100%);
+  pointer-events:none;opacity:0;transform:scaleX(.6);
+  transition:opacity .9s var(--ease) .3s,transform .9s cubic-bezier(.16,1,.3,1) .3s}
+.sp-grid.sp-grid-3plus1>.sp-divider.in,
+.in .sp-grid.sp-grid-3plus1>.sp-divider{opacity:1;transform:scaleX(1)}
+@media(max-width:780px){
+  .sp-grid.sp-grid-3plus1{grid-template-columns:1fr;perspective:none}
+  .sp-grid.sp-grid-3plus1>.sp-c.sp-wide{padding:28px 22px;gap:18px}
+  .sp-grid.sp-grid-3plus1>.sp-c.sp-wide .sp-wide-grid{grid-template-columns:1fr;gap:14px}
+}
+
 @keyframes sp-float-anim{
   0%{--sp-float:0px}
   25%{--sp-float:-4px}
@@ -1111,29 +1145,13 @@ position:relative;overflow:hidden;transition:color .35s}
 
 <div class="gd"></div>
 
-<!-- CONCEPT -->
-<section id="sec-concept">
-  <div class="cn-orb cn-orb-1" aria-hidden="true"></div>
-  <div class="cn-orb cn-orb-2" aria-hidden="true"></div>
-  <div class="cn-inner">
-    <p class="sec-lbl rv">Tanken bakom</p>
-    <h2 class="sec-h2 rv">Över <em>300 år av smide</em> &mdash; i en vardag som faktiskt <em>klyver veden</em>.</h2>
-    <div class="cn-body">
-      <p class="rv d1">Hultsbruks yxor bär över <b>300 år av smideshantverk</b> &mdash; de förtjänar innehåll som matchar känslan. I miljöerna runt Villa Sjövik blir yxan en självklar del av vardagen: vedklyvning som hantverk, estetik och stillhet, fångat så att det bygger varumärket inför <em>Europa-lanseringen</em>.</p>
-      <p class="rv d2">Spåren nedan är förslag &mdash; <em>de formas gärna helt efter er.</em></p>
-    </div>
-  </div>
-</section>
-
-<div class="gd"></div>
-
 <!-- FYRA SPÅR -->
 <section id="sec-spar">
   <div class="sp-orb sp-orb-1" aria-hidden="true"></div>
   <div class="sp-inner">
     <p class="sec-lbl rv">Fyra spår</p>
     <h2 class="sec-h2 rv">Fyra sätt att visa <em>Hultsbruk</em> i Villa&nbsp;Sjöviks vardag.</h2>
-    <div class="sp-grid sp-grid-4">
+    <div class="sp-grid sp-grid-3plus1">
 
       <div class="sp-c rv d1">
         <p class="sp-eyebrow">Spår 01</p>
@@ -1159,17 +1177,21 @@ position:relative;overflow:hidden;transition:color .35s}
         <span class="sp-tag">Besök &middot; Smedja &middot; Arv</span>
       </div>
 
-      <div class="sp-c rv d4">
-        <p class="sp-eyebrow">Spår 04</p>
-        <h3>Ert upplägg</h3>
-        <p class="sp-sub">"Format helt efter er"</p>
-        <p class="sp-body">Spåren formas gärna helt efter er &mdash; kanske tre videor kring vedklyvningen och allt runt processen vid Villa Sjövik, eller en helt egen idé. Säg bara till vad som skulle lyfta Hultsbruk just nu.</p>
+      <div class="sp-divider rv" aria-hidden="true"></div>
+
+      <div class="sp-c sp-wide rv d4">
+        <div class="sp-wide-grid">
+          <div>
+            <p class="sp-eyebrow">Spår 04</p>
+            <h3>Ert upplägg</h3>
+            <p class="sp-sub">"Format helt efter er"</p>
+          </div>
+          <p class="sp-body">Spåren formas gärna helt efter er &mdash; kanske tre videor kring vedklyvningen och allt runt processen vid Villa Sjövik, eller en helt egen idé. Säg bara till vad som skulle lyfta Hultsbruk just nu.</p>
+        </div>
         <span class="sp-tag">Skräddarsytt &middot; Egen idé &middot; Kampanj</span>
       </div>
 
     </div>
-
-    <p class="sp-footnote rv">Varje spår produceras som en självständig publicering med tydlig reklammärkning. Spåren kan kombineras eller köras enskilt &mdash; pakettyp avgör hur många publiceringar som ingår.</p>
   </div>
 </section>
 
@@ -1310,7 +1332,6 @@ position:relative;overflow:hidden;transition:color .35s}
   <div class="pr-inner">
     <p class="sec-lbl rv">Investering</p>
     <h2 class="sec-h2 rv">Två vägar att bygga <em>berättelse och räckvidd.</em></h2>
-    <p class="sec-sublead rv">Ett fokuserat startpaket för att sätta historien i rörelse, eller ett komplett kampanjpaket där priset per video blir bättre ju fler som väljs. Full nyttjanderätt till allt material i båda fallen.</p>
 
     <div class="price-grid">
 
@@ -1668,11 +1689,10 @@ if(spotSec){
   const mqEl=document.getElementById('sec-mq');
   const sections=[
     {id:'sec-hero',label:'Intro',scrollTo:()=>0},
-    {id:'sec-concept',label:'Tanken',
-      scrollTo:()=>mqEl?(mqEl.getBoundingClientRect().top+window.scrollY-90):document.getElementById('sec-concept').getBoundingClientRect().top+window.scrollY-30,
-      trackStart:()=>mqEl?(mqEl.getBoundingClientRect().top+window.scrollY):document.getElementById('sec-concept').getBoundingClientRect().top+window.scrollY
+    {id:'sec-spar',label:'Fyra spår',
+      scrollTo:()=>mqEl?(mqEl.getBoundingClientRect().top+window.scrollY-90):document.getElementById('sec-spar').getBoundingClientRect().top+window.scrollY-30,
+      trackStart:()=>mqEl?(mqEl.getBoundingClientRect().top+window.scrollY):document.getElementById('sec-spar').getBoundingClientRect().top+window.scrollY
     },
-    {id:'sec-spar',label:'Fyra spår'},
     {id:'sec-profil',label:'Kanalen'},
     {id:'sec-meta',label:'Effekten'},
     {id:'sec-pr',label:'Investering'},
