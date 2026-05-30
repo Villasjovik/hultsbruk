@@ -1408,7 +1408,7 @@ position:relative;overflow:hidden;transition:color .35s}
         <div class="price-box featured rv" data-pkg-box="season">
           <span class="price-ribbon">Rekommenderat &middot; MEST VÄRDE</span>
           <h3 class="price-title">Kampanjpaket</h3>
-          <p class="price-sub">3 videor &middot; 6 stories med CTA &middot; 30 miljöbilder</p>
+          <p class="price-sub">3 videor &middot; 6 stories med CTA &middot; 50 miljöbilder</p>
           <p class="price-total-lbl">Pris</p>
           <p class="price-orig" data-base="ord. 55 500 kr" data-boost="ord. 85 500 kr">ord. 55 500 kr</p>
           <p class="price-total" data-base="39000" data-boost="69000">39 000</p>
@@ -1416,7 +1416,7 @@ position:relative;overflow:hidden;transition:color .35s}
           <div class="price-includes">
             <p class="pi hi">3 videor publicerade i Villa Sjöviks kanaler</p>
             <p class="pi hi">6 stories med direktlänk och CTA</p>
-            <p class="pi hi">30 miljöbilder i autentisk hemmiljö</p>
+            <p class="pi hi">50 miljöbilder i autentisk hemmiljö</p>
             <p class="pi">Full nyttjanderätt till allt material</p>
             <p class="pi">Styling, filmning och redigering ingår</p>
           </div>
@@ -2219,47 +2219,9 @@ if(spotSec){
   refreshCard('season');
 })();
 
-/* META-RÄCKVIDD AUTO-AKTIVERING — Kampanjpaket (featured) togglar ON automatiskt
-   när investerings-sektionen står stilla i view en kort stund. */
-(function(){
-  const sec=document.getElementById('sec-pr');
-  const btn=document.querySelector('.pkg-col.featured .pkg-boost-head');
-  if(!sec||!btn)return;
-
-  try{if(sessionStorage.getItem('hultsbruk-boost-autoactivated')==='true')return}catch(e){}
-  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-
-  const DELAY_MS=1800;
-  const VIEW_THRESHOLD=0.45;
-
-  let triggered=false;
-  let timerId=null;
-
-  const obs=new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(triggered)return;
-      if(e.isIntersecting){
-        if(timerId===null){
-          timerId=setTimeout(()=>{
-            timerId=null;
-            if(triggered)return;
-            const wrap=btn.closest('.pkg-boost');
-            const alreadyOn=wrap && wrap.getAttribute('aria-pressed')==='true';
-            if(alreadyOn){triggered=true;return;}
-            triggered=true;
-            obs.unobserve(sec);
-            btn.click();
-            try{sessionStorage.setItem('hultsbruk-boost-autoactivated','true')}catch(e){}
-          },DELAY_MS);
-        }
-      }else{
-        if(timerId!==null){clearTimeout(timerId);timerId=null;}
-      }
-    });
-  },{threshold:VIEW_THRESHOLD});
-
-  obs.observe(sec);
-})();
+/* META-RÄCKVIDD AUTO-AKTIVERING — AVAKTIVERAD för Hultsbruk (Lucas 2026-05-30):
+   Meta ads tas i senare dialog, så featured-boosten ska INTE slå på automatiskt vid scroll.
+   Knappen fungerar fortfarande manuellt (pkg-boost-head-handlern är ett separat block). */
 
 /* BOKNINGSFLOW */
 (function(){
